@@ -73,9 +73,10 @@ class App extends Component {
 
         <body>
           <div>
-            <button className="btn btn-primary my-4" id="walletconnect" type="button" onClick={() => this.walletConnectFunc()}>WalletConnect</button>
-            <button type="button" id="mew_walletconnect" onClick={() => this.MEWwalletConnectFunc()}>MEW-Wallet-Connect</button>
-
+            <button className="btn btn-primary my-4" type="button" onClick={() => this.walletConnectFunc()}>WalletConnect</button>
+            <p id="walletconnect" hidden>{this.state.address}</p>
+            <button type="button" onClick={() => this.MEWwalletConnectFunc()}>MEW-Wallet-Connect</button>
+            <p id="mew_walletconnect" hidden>{this.state.address}</p>
           </div>
         </body>
       </div>
