@@ -19,9 +19,10 @@ export const web3 = new Web3(ethereum)
 class App extends Component {
 
     state = {
-      address: ''
-
+      address: '',
+      mew_address: ''
     }
+
    connector = new WalletConnect({
       bridge: "https://bridge.walletconnect.org", // Required
       qrcodeModal: QRCodeModal,
@@ -32,8 +33,13 @@ class App extends Component {
       ethereum.enable().then(async(accounts) => {
      
       //  await this.props.postAddToProfile(obj);
-        console.log(`User's address is ${accounts[0]}`)
-        alert(accounts[0])
+        const obj = {
+          "mew_address": accounts[0],
+        }
+        this.setState({ mew_address: obj.mew_address})
+        console.log('hey',this.state.mew_address)
+        // alert(accounts[0])
+        alert(this.state.mew_address)
       })
 
    } 
@@ -56,9 +62,9 @@ class App extends Component {
       console.log("connect account", accounts)
       console.log("chainid account", chainId)
 
+
       const obj = {
         "address": accounts[0],
-
       }
       this.setState({ address: obj.address })
       console.log(this.state.address)
@@ -76,7 +82,7 @@ class App extends Component {
             <button className="btn btn-primary my-4" type="button" onClick={() => this.walletConnectFunc()}>WalletConnect</button>
             <p id="walletconnect" hidden>{this.state.address}</p>
             <button type="button" onClick={() => this.MEWwalletConnectFunc()}>MEW-Wallet-Connect</button>
-            <p id="mew_walletconnect" hidden>{this.state.address}</p>
+            <p id="mew_walletconnect" hidden>{this.state.mew_address}</p>
           </div>
         </body>
       </div>
